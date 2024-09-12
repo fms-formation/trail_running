@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Trail Running & Running Tolosan</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>Trail Running & Running Tolosan</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#accueil" class="link active">Accueil</a></li>
+                    <li><a href="#materiel" class="link ">Matériel</a></li>
+                    <li><a href="#evenements" class="link ">Evenements</a></li>
+
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+                <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+
+
+    
+<!----------------------------- Accueil ----------------------------------->    
+<div class="accueil-box">
+        
+    <!------------------- accueil  -------------------------->
+    <div class="accueil-container" id="accueil">
+        <div class="top">
+            <H1>Bienvenue chère courreur</H1>
+        </div>
+    </div>
+
+    
+<!----------------------------- Presentation ----------------------------------->    
+
+<!------------------- materiel  -------------------------->
+<div class="Materiel-container" id="materiel">
+  <div class="materiel-box" id="materiel">
+      <div class="top">
+          <h1>Liste du matériel recommandé pour la pratique</h1>
+      </div>
+
+      <div class="materiel-container">
+          <!-- Catégories de Chaussures -->
+          <div class="category">
+              <i class="bx bx-shoe"></i>
+              <h3>Chaussures</h3>
+              <p>Découvrez notre sélection de chaussures pour le trail et la course.</p>
+              <label for="main-category">Choisir une marque :</label>
+              <select id="main-category" onchange="updateSubCategory('shoes', 'product')">
+                  <option value="">Sélectionnez une marque</option>
+                  <option value="salomon">Salomon</option>
+                  <option value="decathlon">Decathlon</option>
+                  <option value="hoka">Hoka</option>
+                  <option value="asics">Asics</option>
+              </select>
+              
+              <label for="product">Sélectionnez un produit :</label>
+              <select id="product" class="products" onchange="showProductDetails('shoes')">
+                  <option value="">Sélectionnez une sous-catégorie</option>
+              </select>
+              
+              <button onclick="addToCart('shoes')">Ajouter au panier</button>
+          </div>
+
+          <!-- Catégories de Vêtements -->
+          <div class="category">
+              <i class="bx bx-t-shirt"></i>
+              <h3>Vêtements</h3>
+              <p>Trouvez les vêtements parfaits pour vos séances de trail et de running.</p>
+              <label for="main">Choisir une marque :</label>
+              <select id="main" onchange="updateSubCategory('clothes', 'sub')">
+                  <option value="">Sélectionnez une marque</option>
+                  <option value="salomon">Salomon</option>
+                  <option value="decathlon">Decathlon</option>
+                  <option value="hoka">Hoka</option>
+                  <option value="asics">Asics</option>
+              </select>
+              
+              <label for="sub">Sélectionnez un produit :</label>
+              <select id="sub" class="products" onchange="showProductDetails('clothes')">
+                  <option value="">Sélectionnez une sous-catégorie</option>
+              </select>
+              
+              <button onclick="addToCart('clothes')">Ajouter au panier</button>
+          </div>
+
+          <!-- Catégories d'Accessoires -->
+          <div class="category">
+              <i class="bx bx-backpack"></i>
+              <h3>Accessoires</h3>
+              <p>Accessoires essentiels pour améliorer vos performances.</p>
+              <label for="choose">Choisir un accessoire :</label>
+              <select id="choose" onchange="updateSubCategory('accessories', 'accessories-product')">
+                  <option value="">Sélectionnez une marque</option>
+                  <option value="salomon">Salomon</option>
+                  <option value="decathlon">Decathlon</option>
+                  <option value="hoka">Hoka</option>
+                  <option value="asics">Asics</option>
+              </select>
+
+              <select id="accessories-product" class="products" onchange="showProductDetails('accessories')">
+                  <option value="">Sélectionnez une sous-catégorie</option>
+              </select>
+              
+              <button onclick="addToCart('accessories')">Ajouter au panier</button>
+          </div>
+
+          <!-- Affichage du panier -->
+          <div class="cart">
+              <h2>Votre Panier</h2>
+              <ul id="cartItems"></ul>
+              <p id="totalPrice">Total : 0,00€</p>
+              <button class="checkout-btn" onclick="checkout()">Procéder au paiement</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Popup pour le panier -->
+<div id="cart-popup" style="display:none;">
+  <button class="close-btn" onclick="closeCart()">Fermer</button>
+  <h2>Votre panier</h2>
+  <ul id="cart-items"></ul>
+</div>
+<div id="overlay" style="display:none;" onclick="closeCart()"></div>
+
+
+
+
+<!------------------- materiel  -------------------------->
+<div class="Materiel-container" id="evenements">
+    <div class="materiel-box" id="evenements">
+        <div class="top">
+            <H1>Liste des évenements en cours ou préparation</H1>
+        </div>
+        <div class="materiel-container">
+            <div class="top">
+                <h1>Course</h1>
+            </div>
+            <div class="categories">
+                <div class="category">
+                    <i class="bx bx-run"></i>
+                    <h3>Trail Running</h3>
+                    <p>Découvrez notre sélection d'évenements de trail.</p>
+                    <label for="evens">Choisir votre sorti parmi ces territoires:</label>
+                    <select id="evens" onchange="updateCourseInfo()">
+                        <option value="">Sélectionnez une sortie</option>
+                        <option value="salomon">Pyrénées</option>
+                        <option value="decathlon">Alpes</option>
+                        <option value="hoka">Cévennes</option>
+                      </select>
+                </div>
+                <div id="course-info" class="course-info">
+                    <p>Sélectionnez une sortie pour voir les détails de la course.</p>
+                  </div>
+                <div class="category">
+                    <i class="bx bx-run"></i>
+                    <h3>Course à Pied</h3>
+                    <p>Découvrez notre sélection de marathons et courses à pied.</p>
+                    <label for="evens">Choisir votre course parmi ces territoires:</label>
+                    <select id="evens" onchange="updateCourseInfos()">
+                      <option value="">Sélectionnez une course</option>
+                      <option value="salomon">Pyrénées</option>
+                      <option value="decathlon">Alpes</option>
+                      <option value="hoka">Cévennes</option>
+                    </select>
+                  </div>
+                  <div id="course" class="course-info">
+                    <p>Sélectionnez une course pour voir les détails.</p>
+                  </div>
+                <div class="category">
+                    <i class="bx bx-run"></i>
+                    <h3>Cross country</h3>
+                    <p>Découvrez notre sélection d'évenements de cross country.</p>
+                    <label for="evens">Choisir votre sorti parmi ces territoires:</label>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+        <div class="login-container" id="login">
+            <div class="top">
+                <span>Don't have an account? <a href="#login" onclick="register()">Sign Up</a></span>
+                <header>Login</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username or Email">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Sign In">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+        <!------------------- registration form -------------------------->
+        <div class="register-container hidden visible" id="register">
+            <div class="top">
+                <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                <header>Sign Up</header>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Firstname">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Lastname">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email">
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Terms & conditions</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<script>
+  // Liste des produits par catégorie et marque
+const productData = {
+  shoes: {
+      salomon: [
+          { name: 'Chaussures Trail Salomon', price: 120.99 },
+          { name: 'Chaussures Running Salomon', price: 110.99 }
+      ],
+      decathlon: [
+          { name: 'Chaussures Trail Decathlon', price: 80.99 },
+          { name: 'Chaussures Running Decathlon', price: 70.99 }
+      ],
+      hoka: [
+          { name: 'Chaussures Trail Hoka', price: 130.99 }
+      ],
+      asics: [
+          { name: 'Chaussures Running Asics', price: 90.99 }
+      ]
+  },
+  clothes: {
+      salomon: [
+          { name: 'Veste Running Salomon', price: 79.99 }
+      ],
+      decathlon: [
+          { name: 'Short Running Decathlon', price: 19.99 }
+      ]
+  },
+  accessories: {
+      salomon: [
+          { name: 'Sac à dos Trail Salomon', price: 59.99 }
+      ],
+      decathlon: [
+      { name: 'Sac à dos Trail Decathlon', price: 19.99 }
+      ]
+  }
+};
+
+// Panier
+let cart = [];
+
+// Mettre à jour les sous-catégories en fonction de la sélection
+function updateSubCategory(category, subCategoryElementId) {
+  const selectedBrand = document.getElementById(category === 'shoes' ? 'main-category' : category === 'clothes' ? 'main' : 'choose').value;
+  const subCategorySelect = document.getElementById(subCategoryElementId);
+  
+  // Réinitialiser la sous-catégorie
+  subCategorySelect.innerHTML = '<option value="">Sélectionnez une sous-catégorie</option>';
+
+  // Si une marque est sélectionnée, remplir les sous-catégories
+  if (selectedBrand && productData[category][selectedBrand]) {
+      productData[category][selectedBrand].forEach((product, index) => {
+          const option = document.createElement('option');
+          option.value = index;
+          option.textContent = product.name;
+          subCategorySelect.appendChild(option);
+      });
+  }
+}
+
+// Afficher les détails du produit sélectionné
+function showProductDetails(category) {
+  const subCategoryElementId = category === 'shoes' ? 'product' : category === 'clothes' ? 'sub' : 'accessories-product';
+  const selectedIndex = document.getElementById(subCategoryElementId).value;
+  const selectedBrand = document.getElementById(category === 'shoes' ? 'main-category' : category === 'clothes' ? 'main' : 'choose').value;
+
+  if (selectedIndex) {
+      const selectedProduct = productData[category][selectedBrand][selectedIndex];
+      console.log(`Produit sélectionné : ${selectedProduct.name} - ${selectedProduct.price}€`);
+  }
+}
+
+// Ajouter un produit au panier
+function addToCart(category) {
+  const subCategoryElementId = category === 'shoes' ? 'product' : category === 'clothes' ? 'sub' : 'accessories-product';
+  const selectedIndex = document.getElementById(subCategoryElementId).value;
+  const selectedBrand = document.getElementById(category === 'shoes' ? 'main-category' : category === 'clothes' ? 'main' : 'choose').value;
+
+  if (selectedIndex) {
+      const selectedProduct = productData[category][selectedBrand][selectedIndex];
+      cart.push(selectedProduct);
+      updateCartDisplay();
+      alert(`Ajouté au panier: ${selectedProduct.name}`);
+  }
+}
+
+// Mettre à jour l'affichage du panier
+function updateCartDisplay() {
+  const cartItems = document.getElementById('cartItems');
+  const totalPriceElement = document.getElementById('totalPrice');
+  cartItems.innerHTML = '';
+
+  let total = 0;
+  cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} - ${item.price.toFixed(2)}€`;
+      cartItems.appendChild(li);
+      total += item.price;
+  });
+
+  totalPriceElement.textContent = `Total : ${total.toFixed(2)}€`;
+}
+
+// Fonction pour ouvrir le popup du panier
+function openCart() {
+  document.getElementById('cart-popup').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+
+// Fonction pour fermer le popup du panier
+function closeCart() {
+  document.getElementById('cart-popup').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
